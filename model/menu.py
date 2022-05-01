@@ -4,15 +4,14 @@ from lib.utils import save_file, open_file, get_ports
 from tkinter import Menu
 
 class MENU:
-    ports = []
+    ports = get_ports()
     port = ''
 
     def __init__(_self, root=None):
         _self.root = root
         _self.menu = Menu(root)
-        root.config(menu=_self.menu)
 
-        _self.ports = ['COM1', 'COM2', 'COM3', 'USB1'] #get_ports()
+        root.config(menu=_self.menu)
 
         _self.create_file_menu()
         _self.create_interface_menu()

@@ -3,19 +3,20 @@ from tkinter import filedialog
 import serial.tools.list_ports
 
 # HELPER
-def get_ports(_self):
+def get_ports():
     return [port for port, desc, hwid in sorted(serial.tools.list_ports.comports())]
 
 # FILE HELPER
-# TODO: only accept '.txt'
-def open_file(_self):
+def open_file():
     filepath = filedialog.askopenfilename()
     print('open file', filepath)
 
-    if filepath:
+    if '.txt' in filepath:
         file = open(filepath, 'r')
-        print(file.read())
+        content = file.read()
         file.close()
 
-def save_file(_self):
+        print(content)
+
+def save_file():
     print('TODO: save file')
