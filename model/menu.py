@@ -12,7 +12,7 @@ class MENU:
         _self.menu = Menu(root)
         root.config(menu=_self.menu)
 
-        _self.ports = ['COM1', 'COM2'] #get_ports()
+        _self.ports = ['COM1', 'COM2', 'COM3', 'USB1'] #get_ports()
 
         _self.create_file_menu()
         _self.create_interface_menu()
@@ -31,11 +31,11 @@ class MENU:
         _self.interface = Menu(_self.menu, tearoff=0)
 
         for port in _self.ports:
-            _self.interface.add_radiobutton(label=port, command=_self.select_port)
+            _self.interface.add_radiobutton(label=port, command=lambda arg0=port: _self.select_port(arg0))
 
         _self.menu.add_cascade(label='Interface', menu=_self.interface)
 
-    def select_port(_self):
-        print('port:', _self.interface.__dict__)
+    def select_port(_self, port):
+        _self.select_port = port
 
 
