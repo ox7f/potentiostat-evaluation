@@ -1,7 +1,6 @@
 from tkinter import Frame
 from model.entry import ENTRY
 
-frame = Frame(root)
 class FRAME:
     frame = None
     
