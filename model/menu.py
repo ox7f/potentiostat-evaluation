@@ -30,7 +30,7 @@ class MENU:
         _self.interface = Menu(_self.menu, tearoff=0)
 
         for port in _self.ports:
-            _self.interface.add_radiobutton(label=port, command=lambda arg0=port: _self.select_port(arg0))
+            _self.interface.add_radiobutton(label=port, command=lambda p=port: _self.select_port(p))
 
         _self.menu.add_cascade(label='Interface', menu=_self.interface)
 

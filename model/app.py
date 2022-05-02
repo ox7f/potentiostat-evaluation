@@ -9,11 +9,12 @@ import tkinter as tk
 import tkinter.ttk as ttk
 
 class App(tk.Tk):
-    active_name = ''
+    menu = None
+    frames = []
+    frame_data = []
     active_tab = 0
     active_frame = None
-    frames = []
-    menu = None
+    data = []
 
     # INITIALIZE OBJECT
     def __init__(_self):
@@ -70,17 +71,17 @@ class App(tk.Tk):
         _self.active_frame = _self.frames[_self.active_tab]
 
         if (_self.active_tab == 0):
-            _self.active_name = CONFIG['CYCLODATA']
+            _self.frame_data = CONFIG['CYCLODATA']
 
         if (_self.active_tab == 1):
-            _self.active_name =  CONFIG['SQUAREWAVEDATA']
+            _self.frame_data =  CONFIG['SQUAREWAVEDATA']
 
     # BUTTON EVENTS
     def start(_self):
-        _self.graph.start(_self.get_values())
+        print('start') # start potentiostat 
 
     def stop(_self):
-        print('stop')
+        print('stop') # stop potentiostat 
 
     def clear(_self):
         _self.clear_values()
@@ -91,7 +92,7 @@ class App(tk.Tk):
     def get_values(_self):
         data = {}
 
-        for name in _self.active_name:
+        for name in _self.frame_data:
             try:
                 value = _self.active_frame.frame.__dict__[name].entry.get()
 
@@ -105,7 +106,7 @@ class App(tk.Tk):
         return data
 
     def clear_values(_self):            
-        for name in _self.active_name:
+        for name in _self.frame_data:
             _self.active_frame.frame.__dict__[name].entry.delete(0, tk.END)
             _self.active_frame.frame.__dict__[name].label_error['text'] = ''
             _self.active_frame.frame.__dict__[name].entry['foreground'] = 'black'
