@@ -1,8 +1,9 @@
+import numpy
 from flask import Flask, render_template
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'mysecret'
+app.config['SECRET_KEY'] = 'my_secret_key'
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 @app.route('/', methods=['GET'])
@@ -20,8 +21,8 @@ def disconnect():
 @socketio.on('mount')
 def sendmessage():
     while True:
-        socketio.emit('data' , [1, 2, 3])
-        socketio.sleep(2)
+        socketio.emit('data' , numpy.random.randint(1, 101, 5).tolist())
+        socketio.sleep(1/2)
 
 if __name__ == '__main__':
     socketio.run(app, port=5000)
